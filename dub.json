@@ -1,0 +1,15 @@
+{
+	"description": "A minimal D application.",
+	"dependencies": {
+		"bindbc-glfw": "~>0.2.0",
+		"bindbc-opengl": "~>0.3.2"
+	},
+	"versions": ["BindGLFW_Static", "GL_33"],
+	"libs": ["glfw3"],
+	"authors": [
+		"Hiroki Noda"
+	],
+	"copyright": "Copyright © 2018, Hiroki Noda",
+	"license": "BSL-1.0",
+	"name": "triangle.exe"
+}
