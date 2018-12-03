@@ -96,7 +96,7 @@ int main()
     }
     glfwMakeContextCurrent(window);
 
-    GLSupport support = loadOpenGL("/usr/lib/x86_64-linux-gnu/libGL.so\0".ptr);
+    GLSupport support = loadOpenGL();
     if (support == GLSupport.noLibrary || support == GLSupport.noContext)
     {
         std.stdio.stderr.writeln(support);
