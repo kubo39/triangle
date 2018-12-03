@@ -5,8 +5,7 @@ import std.string;
 
 static GLfloat[6] VERTEX_DATA = [0.0, 0.5, 0.5, -0.5, -0.5, -0.5];
 
-string VS_SRC = `
-#version 150
+string VS_SRC = `#version 150
 in vec2 position;
 
 void main()
@@ -14,8 +13,7 @@ void main()
     gl_Position = vec4(position, 0.0, 1.0);
 }`;
 
-string FS_SRC = `
-#version 150
+string FS_SRC = `#version 150
 out vec4 out_color;
 
 void main()
@@ -33,7 +31,7 @@ GLuint compileShader(string src, GLenum type)
     GLint status;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &status);
 
-    if (status != GL_TRUE)
+    if (!status)
     {
         GLsizei len;
         glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &len);
@@ -58,7 +56,7 @@ GLuint linkProgram(GLuint vs, GLuint fs)
     GLint status;
     glGetProgramiv(program, GL_LINK_STATUS, &status);
 
-    if (status != GL_TRUE)
+    if (!status)
     {
         GLint len;
         glGetProgramiv(program, GL_INFO_LOG_LENGTH, &len);
@@ -75,7 +73,7 @@ GLuint linkProgram(GLuint vs, GLuint fs)
 
 int main()
 {
-    if (glfwInit() == GL_FALSE)
+    if (!glfwInit())
     {
         std.stdio.stderr.writeln("Cannot initialize GLFW");
         return 1;
@@ -85,7 +83,6 @@ int main()
     // OpenGL 3.3
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     auto window = glfwCreateWindow(640, 480, "Hello!", null, null);
@@ -128,7 +125,7 @@ int main()
     glEnableVertexAttribArray(posAttr);
     glVertexAttribPointer(posAttr, 2, GL_FLOAT, GL_FALSE, 0, null);
 
-    while (glfwWindowShouldClose(window) == GL_FALSE)
+    while (!glfwWindowShouldClose(window))
     {
         glClearColor(0.3, 0.3, 0.3, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
